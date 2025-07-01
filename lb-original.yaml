@@ -1,0 +1,51 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"oci.oraclecloud.com/load-balancer-type":"lb","service.beta.kubernetes.io/oci-load-balancer-enable-http2":"true","service.beta.kubernetes.io/oci-load-balancer-shape":"flexible","service.beta.kubernetes.io/oci-load-balancer-shape-flex-max":"100","service.beta.kubernetes.io/oci-load-balancer-shape-flex-min":"10","service.beta.kubernetes.io/oci-load-balancer-ssl-ports":"443","service.beta.kubernetes.io/oci-load-balancer-ssl-protocols":"TLSv1.2,TLSv1.3","service.beta.kubernetes.io/oci-load-balancer-subnet1":"ocid1.subnet.oc1.sa-santiago-1.aaaaaaaaccikvwaayqdghlmljscxczupri4qrcpalpgmthfhr7efjlyvwdna","service.beta.kubernetes.io/oci-load-balancer-tls-secret":"backend-tls"},"name":"progresoacademico-lb-service","namespace":"qa-progresoacademico"},"spec":{"ports":[{"name":"https","port":443,"protocol":"TCP","targetPort":8080}],"selector":{"app":"progresoacademico"},"type":"LoadBalancer"}}
+    oci.oraclecloud.com/load-balancer-type: lb
+    service.beta.kubernetes.io/oci-load-balancer-enable-http2: "true"
+    service.beta.kubernetes.io/oci-load-balancer-shape: flexible
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "100"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+    service.beta.kubernetes.io/oci-load-balancer-ssl-ports: "443"
+    service.beta.kubernetes.io/oci-load-balancer-ssl-protocols: TLSv1.2,TLSv1.3
+    service.beta.kubernetes.io/oci-load-balancer-subnet1: ocid1.subnet.oc1.sa-santiago-1.aaaaaaaaccikvwaayqdghlmljscxczupri4qrcpalpgmthfhr7efjlyvwdna
+    service.beta.kubernetes.io/oci-load-balancer-tls-secret: backend-tls
+  creationTimestamp: "2025-06-09T14:58:48Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  name: progresoacademico-lb-service
+  namespace: qa-progresoacademico
+  resourceVersion: "33885265"
+  uid: ec22cc06-cff8-47a1-b846-9707cc31c23a
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.96.88.62
+  clusterIPs:
+  - 10.96.88.62
+    externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: https
+    nodePort: 31816
+    port: 443
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: progresoacademico
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 146.235.244.24
+      ipMode: VIP
