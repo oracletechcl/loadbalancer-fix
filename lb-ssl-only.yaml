@@ -11,7 +11,7 @@ metadata:
     service.beta.kubernetes.io/oci-load-balancer-enable-http2: "true"
     service.beta.kubernetes.io/oci-load-balancer-ssl-ports: "443"
     service.beta.kubernetes.io/oci-load-balancer-ssl-protocols: "TLSv1.2,TLSv1.3"
-    service.beta.kubernetes.io/oci-load-balancer-tls-secret: "backend-tls"
+    service.beta.kubernetes.io/oci-load-balancer-tls-secret: "wildcard-backend-tls"
     service.beta.kubernetes.io/oci-load-balancer-subnet1: "ocid1.subnet.oc1.sa-santiago-1.aaaaaaaaccikvwaayqdghlmljscxczupri4qrcpalpgmthfhr7efjlyvwdna"
 spec:
   type: LoadBalancer
