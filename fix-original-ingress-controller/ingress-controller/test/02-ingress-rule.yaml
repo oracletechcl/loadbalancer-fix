@@ -7,6 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   tls:
@@ -17,6 +18,15 @@ spec:
     - host: pa-backend-qa-progreso-oci.duoc.cl
       http:
         paths:
+          # Direct API access path
+          - path: /api(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: qa-progresoacademico-svc
+                port:
+                  number: 80
+          # Original application path
           - path: /progresoacademico(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
