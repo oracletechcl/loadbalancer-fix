@@ -22,6 +22,6 @@ spec:
             pathType: ImplementationSpecific
             backend:
               service:
-                name: dev-progresoacademico-svc
+                name: qa-progresoacademico-svc
                 port:
                   number: 80
