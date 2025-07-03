@@ -6,7 +6,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
@@ -18,6 +17,7 @@ spec:
     - host: pa-backend-dev-progreso-oci.duoc.cl
       http:
         paths:
+          # 👉 Esta sí necesita rewrite (quita /progresoacademico del path)
           - path: /progresoacademico(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
@@ -25,6 +25,11 @@ spec:
                 name: dev-progresoacademico-svc
                 port:
                   number: 80
+            # Reescribe para eliminar "/progresoacademico"
+            pathRewrite:
+              nginx.ingress.kubernetes.io/rewrite-target: /$2
+
+          # 👉 Esta NO necesita rewrite, backend ya espera la ruta completa /api/...
           - path: /api(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
