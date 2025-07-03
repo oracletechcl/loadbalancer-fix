@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: progresoacademico-ingress-rule-prd
+  namespace: prd-progreso-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - pa-backend-prd-progreso-oci.duoc.cl
+      secretName: wildcard-backend-tls
+  rules:
+    - host: pa-backend-prd-progreso-oci.duoc.cl
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: prd-progresoacademico-svc
+                port:
+                  number: 80
+          - path: /progresoacademico 
+            pathType: Prefix
+            backend:
+              service:
+                name: prd-progresoacademico-svc
+                port:
+                  number: 80
+
+
+
