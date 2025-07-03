@@ -17,24 +17,20 @@ spec:
     - host: pa-backend-dev-progreso-oci.duoc.cl
       http:
         paths:
-        - backend:
-            service:
-              name: dev-progresoacademico-svc
-              port:
-                number: 80
-          path: /api
-          pathType: Prefix
-        - backend:
-            service:
-              name: dev-progresoacademico-svc
-              port:
-                number: 80
-          path: /progresoacademico
-          pathType: Prefix
-      tls:
-      - hosts:
-        - pa-backend-dev-progreso-oci.duoc.cl
-        secretName: wildcard-backend-tls
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: dev-progresoacademico-svc
+                port:
+                  number: 80
+          - path: /progresoacademico 
+            pathType: Prefix
+            backend:
+              service:
+                name: dev-progresoacademico-svc
+                port:
+                  number: 80
 
 
 
