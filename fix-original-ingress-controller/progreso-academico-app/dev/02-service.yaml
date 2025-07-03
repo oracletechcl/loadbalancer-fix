@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: qa-progresoacademico-svc
+  namespace: dev-progreso-namespace
+spec:
+  selector:
+    app: progresoacademico-app
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
