@@ -11,17 +11,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-  - hosts:
-      - pa-backend-qa-progreso-oci.duoc.cl
-    secretName: wildcard-backend-tls
+    - hosts:
+        - pa-backend-qa-progreso-oci.duoc.cl
+      secretName: wildcard-backend-tls
   rules:
-  - host: pa-backend-qa-progreso-oci.duoc.cl
-    http:
-      paths:
-      - path: /api(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: qa-progresoacademico-svc
-            port:
-              number: 80
+    - host: pa-backend-qa-progreso-oci.duoc.cl
+      http:
+        paths:
+          - path: /progresoacademico(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: qa-progresoacademico-svc
+                port:
+                  number: 80
