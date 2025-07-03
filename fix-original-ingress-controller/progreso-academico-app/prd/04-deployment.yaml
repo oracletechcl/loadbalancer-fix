@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: progresoacademico-app
-        image: scl.ocir.io/axtkyrdgjlws/desarrollo/progresoacademico/pa-backend:v1
+        image: scl.ocir.io/axtkyrdgjlws/produccion/progresoacademico/pa-backend:latest
         resources:
           requests:
             cpu: "250m"
