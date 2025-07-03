@@ -4,6 +4,12 @@ metadata:
   name: ingress-nginx
 
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: qa-progreso-namespace
+
+---
 
 apiVersion: v1
 kind: ConfigMap
