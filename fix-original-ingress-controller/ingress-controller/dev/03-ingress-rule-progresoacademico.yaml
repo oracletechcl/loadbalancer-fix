@@ -17,23 +17,70 @@ spec:
     - host: pa-backend-dev-progreso-oci.duoc.cl
       http:
         paths:
-          # 👉 Esta sí necesita rewrite (quita /progresoacademico del path)
-          - path: /progresoacademico(/|$)(.*)
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: dev-progresoacademico-svc
-                port:
-                  number: 80
-            # Reescribe para eliminar "/progresoacademico"
-            pathRewrite:
-              nginx.ingress.kubernetes.io/rewrite-target: /$2
+        - backend:
+            service:
+              name: dev-progresoacademico-svc
+              port:
+                number: 80
+          path: /api
+          pathType: Prefix
+        - backend:
+            service:
+              name: dev-progresoacademico-svc
+              port:
+                number: 80
+          path: /progresoacademico
+          pathType: Prefix
+      tls:
+      - hosts:
+        - pa-backend-dev-progreso-oci.duoc.cl
+        secretName: wildcard-backend-tls
 
-          # 👉 Esta NO necesita rewrite, backend ya espera la ruta completa /api/...
-          - path: /api(/|$)(.*)
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: dev-progresoacademico-svc
-                port:
-                  number: 80
+
+
+#OPT 1
+  # ingressClassName: nginx
+  # rules:
+  # - host: pa-backend-dev-progreso-oci.duoc.cl
+  #   http:
+  #     paths:
+  #     - backend:
+  #         service:
+  #           name: dev-progresoacademico-svc
+  #           port:
+  #             number: 80
+  #       path: /api
+  #       pathType: Prefix
+  #     - backend:
+  #         service:
+  #           name: dev-progresoacademico-svc
+  #           port:
+  #             number: 80
+  #       path: /progresoacademico
+  #       pathType: Prefix
+  # tls:
+  # - hosts:
+  #   - pa-backend-dev-progreso-oci.duoc.cl
+  #   secretName: wildcard-backend-tls
+
+
+
+  #OPT2
+
+  # spec:
+  # ingressClassName: nginx
+  # rules:
+  # - host: pa-backend-dev-progreso-oci.duoc.cl
+  #   http:
+  #     paths:
+  #     - backend:
+  #         service:
+  #           name: dev-progresoacademico-svc
+  #           port:
+  #             number: 80
+  #       path: /progresoacademico(/|$)(.*)
+  #       pathType: ImplementationSpecific
+  # tls:
+  # - hosts:
+  #   - pa-backend-dev-progreso-oci.duoc.cl
+  #   secretName: wildcard-backend-tls
