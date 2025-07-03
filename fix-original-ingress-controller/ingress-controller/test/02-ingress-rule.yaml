@@ -6,14 +6,14 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    nginx.ingress.kubernetes.io/rewrite-target: /api/$2
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
         - pa-backend-qa-progreso-oci.duoc.cl
-      secretName: wildcard-backend-tls
+      secretName: wildcard-backend-tls  # <--- Copiado al namespace 'ingress-nginx'
   rules:
     - host: pa-backend-qa-progreso-oci.duoc.cl
       http:
