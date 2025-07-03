@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: progresoacademico-deployment
-  namespace: qa-progresoacademico
+  name: progresoacademico-app-deployment
+  namespace: qa-progreso-namespace
   labels:
-    app: progresoacademico
+    app: progresoacademico-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: progresoacademico
+      app: progresoacademico-app
   template:
     metadata:
       labels:
-        app: progresoacademico
+        app: progresoacademico-app
     spec:
       containers:
-      - name: progresoacademico
+      - name: progresoacademico-app
         image: scl.ocir.io/axtkyrdgjlws/qa/progresoacademico/pa-backend:v1
         resources:
           requests:
