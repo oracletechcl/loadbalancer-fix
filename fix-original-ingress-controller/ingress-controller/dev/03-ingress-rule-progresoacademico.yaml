@@ -25,3 +25,12 @@ spec:
                 name: dev-progresoacademico-svc
                 port:
                   number: 80
+        paths:
+          - path: /api(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: dev-progresoacademico-svc
+                port:
+                  number: 80
+
