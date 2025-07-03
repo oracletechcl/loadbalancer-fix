@@ -346,7 +346,7 @@ metadata:
     service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
     service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "100"    
     oci.oraclecloud.com/load-balancer-type: "lb"
-    service.beta.kubernetes.io/oci-load-balancer-internal: "true"
+    service.beta.kubernetes.io/oci-load-balancer-internal: "false"
     service.beta.kubernetes.io/oci-load-balancer-subnet1: "ocid1.subnet.oc1.sa-santiago-1.aaaaaaaaccikvwaayqdghlmljscxczupri4qrcpalpgmthfhr7efjlyvwdna"    
   name: ingress-nginx-controller
   namespace: ingress-nginx
